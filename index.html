@@ -280,6 +280,22 @@
   .prog-icon svg{width:28px; height:28px;}
   .prog-card h3{font-size:1.2rem; margin-bottom:.4em;}
   .prog-card p{color:var(--ink-soft); margin:0; font-size:.96rem;}
+  .status-badge{
+    display:inline-flex; align-items:center; gap:.4em; font-size:.76rem; font-weight:700;
+    letter-spacing:.03em; text-transform:uppercase; padding:.35em .8em; border-radius:999px; margin-bottom:1em;
+  }
+  .status-badge::before{content:''; width:7px; height:7px; border-radius:50%; flex:none;}
+  .status-badge.is-open{background:#E4F2E8; color:#1E6B3A;}
+  .status-badge.is-open::before{background:#2E9E52;}
+  .status-badge.is-soon{background:#FBF0D6; color:#8A6412;}
+  .status-badge.is-soon::before{background:var(--gold);}
+  .status-badge.is-closed{background:#EFEAE0; color:#7A7266;}
+  .status-badge.is-closed::before{background:#9C9484;}
+  .mode-badge{
+    display:inline-flex; align-items:center; gap:.4em; font-size:.76rem; font-weight:600;
+    padding:.35em .8em; border-radius:999px; margin:0 0 1em .5em; background:#E3EDEA; color:var(--teal);
+  }
+  .mode-badge::before{content:'⟳'; font-size:.85em;}
   @media (max-width:900px){.prog-grid{grid-template-columns:1fr;}}
 
   /* ===== Location / Contact ===== */
@@ -388,7 +404,7 @@
       <div class="arabic-mark" lang="ar">اقرأ</div>
       <span class="eyebrow" style="color:#E7CD8B;">Iqra &mdash; &ldquo;Read&rdquo;, the first word of revelation</span>
       <h1>Where the Qur'an is Memorized and the Mind is Trained</h1>
-      <p class="lead">Ubayyu bin Ka'ab Memorial College brings together Tahfizul-Qur'an, Islamic scholarship, and the Western curriculum &mdash; raising huffaz and scholars ready for this world and the next.</p>
+      <p class="lead">Ubayyu bin Ka'ab Memorial College brings together Tahfiz, Islamic scholarship, and Arabic studies &mdash; raising huffaz and scholars ready for this world and the next. Tahfiz admission is open now.</p>
       <div class="hero-loc">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
         Dandali Road, Makera, Kaduna South, Kaduna State
@@ -412,7 +428,7 @@
         <span class="eyebrow">Our Namesake</span>
         <h2>Carrying a Name Built on the Qur'an</h2>
         <p>Ubayy ibn Ka'b was among the earliest scribes of revelation and the companion most celebrated for his mastery of Qur'anic recitation. Our college takes his name as both an honour and a standard &mdash; a daily reminder of the discipline, sincerity, and depth of knowledge we ask of every student who memorizes the Book here.</p>
-        <p>Alongside Hifz and the Islamic sciences, students follow the Nigerian Western curriculum, sitting the same standards as any conventional college while grounded firmly in Islamic character and worship.</p>
+        <p>The college is organized into three categories &mdash; Tahfiz, Islamic Studies &amp; Arabic, and Adult Non-Arabic Islamic Studies &mdash; opening for admission in stages. Tahfiz is open now, with the other categories to follow.</p>
       </div>
     </div>
   </section>
@@ -442,30 +458,36 @@
     <div class="wrap">
       <div class="section-head reveal">
         <span class="eyebrow">A Complete Education</span>
-        <h2>Three Pillars, One Student</h2>
-        <p>Every student at UBK Memorial College is formed by three strands of learning, woven together rather than kept apart.</p>
+        <h2>Our Categories</h2>
+        <p>UBK Memorial College is organized into three categories, each at a different stage of admission.</p>
       </div>
       <div class="prog-grid reveal">
         <div class="prog-card">
           <div class="prog-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="#F8F3E6" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
           </div>
-          <h3>Tahfizul-Qur'an</h3>
-          <p>Structured, teacher-guided memorization of the Qur'an with tajweed, revision cycles, and regular ijazah-track assessment.</p>
+          <span class="status-badge is-open">Admission Open</span>
+          <span class="mode-badge">Online &amp; Offline Classes</span>
+          <h3>Tahfiz</h3>
+          <p>Structured, teacher-guided memorization of the Qur'an with tajweed, revision cycles, and regular ijazah-track assessment. Available both online and offline (in-person). Enrolment is open now.</p>
         </div>
         <div class="prog-card">
           <div class="prog-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="#F8F3E6" stroke-width="1.8"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5"/></svg>
           </div>
-          <h3>Islamic Studies</h3>
-          <p>Aqeedah, Fiqh, Seerah, Hadith, and Arabic language taught to build clear understanding and lived practice, not memorization alone.</p>
+          <span class="status-badge is-soon">Coming Soon</span>
+          <span class="mode-badge">Online &amp; Offline Classes</span>
+          <h3>Islamic Studies &amp; Arabic</h3>
+          <p>Aqeedah, Fiqh, Seerah, Hadith, and Arabic language, taught to build clear understanding and lived practice. Will be offered both online and offline (in-person). This section is planned for the future and is not yet open for admission.</p>
         </div>
         <div class="prog-card">
           <div class="prog-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="#F8F3E6" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
           </div>
-          <h3>Western Curriculum</h3>
-          <p>The full Nigerian secondary/tertiary academic curriculum, preparing students for national examinations and higher study.</p>
+          <span class="status-badge is-closed">Not Yet Open</span>
+          <span class="mode-badge">Online &amp; Offline Classes</span>
+          <h3>Adults &mdash; Non-Arabic Islamic Studies</h3>
+          <p>Islamic studies for adult learners taught in a non-Arabic-medium format. Will be available both online and offline (in-person). This category is not currently open for admission.</p>
         </div>
       </div>
     </div>
@@ -506,8 +528,8 @@
   <!-- ADMISSIONS CTA -->
   <section id="admissions" style="padding-top:0;">
     <div class="cta-banner reveal">
-      <h2>Admissions Now Open</h2>
-      <p>Give your child a foundation in the Qur'an alongside a full academic education. Visit the college or reach out to begin the enrolment process.</p>
+      <h2>Tahfiz Admission Now Open</h2>
+      <p>Give your child a foundation in the Qur'an through our Tahfiz section, open for enrolment now. Our Islamic Studies &amp; Arabic and Adult Non-Arabic Islamic Studies categories will open in the future &mdash; visit or reach out to learn more.</p>
       <a href="#location" class="btn btn-gold">Get Directions &amp; Contact Details</a>
     </div>
   </section>
@@ -519,7 +541,7 @@
     <div class="foot-grid">
       <div>
         <div class="foot-brand">Ubayyu bin Ka'ab<br>Memorial College</div>
-        <p>A conventional Islamic college combining Tahfizul-Qur'an, Islamic studies, and the Western curriculum in Kaduna State, Nigeria.</p>
+        <p>An Islamic college offering Tahfiz, Islamic Studies &amp; Arabic, and Adult Non-Arabic Islamic Studies in Kaduna State, Nigeria.</p>
       </div>
       <div>
         <h4>Explore</h4>
