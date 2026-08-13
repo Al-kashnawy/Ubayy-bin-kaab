@@ -177,19 +177,6 @@
   }
   .field textarea:focus-visible{border-color:var(--gold);}
 
-  /* Floating enquiry button */
-  .fab-enquire{
-    position:fixed; bottom:24px; right:24px; z-index:150;
-    background:var(--gold); color:var(--green-darker); border:none; cursor:pointer;
-    padding:.85em 1.3em; border-radius:999px; font-family:inherit; font-weight:700; font-size:.92rem;
-    display:flex; align-items:center; gap:.5em; box-shadow:0 12px 26px -10px rgba(0,0,0,0.4);
-    transition:transform .15s;
-  }
-  .fab-enquire:hover{transform:translateY(-2px);}
-  .fab-enquire svg{width:18px; height:18px;}
-  @media (max-width:600px){
-    .fab-enquire{right:16px; bottom:16px; padding:.75em 1.05em; font-size:.85rem;}
-  }
   .enquire-success{
     display:none; text-align:center; background:#EAF3EC; border:1px solid rgba(30,70,56,0.2);
     color:var(--green-deep); border-radius:10px; padding:.9em; font-size:.9rem; margin-top:1em;
@@ -625,6 +612,11 @@
         <input type="password" id="signupPass" name="signupPass" autocomplete="new-password" minlength="6" required>
         <small style="color:var(--ink-soft); font-size:.78rem;">At least 6 characters.</small>
       </div>
+      <div class="field">
+        <label for="signupCode">Access Code</label>
+        <input type="text" id="signupCode" name="signupCode" autocomplete="off" required>
+        <small style="color:var(--ink-soft); font-size:.78rem;">Provided to you by the college.</small>
+      </div>
       <button type="submit" class="btn btn-gold">Create Account</button>
     </form>
 
@@ -648,11 +640,6 @@
     <a id="assessmentLink" href="https://form.jotform.com/262227667859069" target="_blank" rel="noopener" class="btn btn-gold" style="display:block; text-align:center; width:100%; box-sizing:border-box; text-decoration:none;">Open Assessment Form</a>
   </div>
 </div>
-
-<button type="button" class="fab-enquire" id="enquireOpenBtn">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2Z"/><path d="M9 13h6M9 17h6M9 9h1"/></svg>
-  Submit Assessment
-</button>
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
@@ -736,12 +723,19 @@
       .finally(() => { btn.disabled = false; btn.textContent = 'Log In'; });
   });
 
+  const SIGNUP_ACCESS_CODE = 'UBK2026Signup';
+
   signupForm.addEventListener('submit', (e) => {
     e.preventDefault();
     clearAuthError();
     const name = document.getElementById('signupName').value.trim();
     const email = document.getElementById('signupEmail').value.trim();
     const password = document.getElementById('signupPass').value;
+    const code = document.getElementById('signupCode').value.trim();
+    if (code !== SIGNUP_ACCESS_CODE) {
+      showAuthError('Incorrect access code. Please check the code given to you by the college and try again.');
+      return;
+    }
     const btn = signupForm.querySelector('button[type="submit"]');
     btn.disabled = true; btn.textContent = 'Creating account…';
     auth.createUserWithEmailAndPassword(email, password)
@@ -771,6 +765,7 @@
       loginSub.textContent = 'Create your account or log in to UBK Memorial College';
       showTab('login');
       loginOpenBtn.textContent = 'Login';
+      closeEnquire();
     }
   });
 
@@ -780,7 +775,6 @@
   document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && loginOverlay.classList.contains('open')) closeLogin(); });
 
   const enquireOverlay = document.getElementById('enquireOverlay');
-  const enquireOpenBtn = document.getElementById('enquireOpenBtn');
   const enquireCloseBtn = document.getElementById('enquireCloseBtn');
 
   function openEnquire(){
@@ -794,7 +788,6 @@
   function minimizeEnquire(){
     enquireOverlay.classList.add('minimized');
   }
-  enquireOpenBtn.addEventListener('click', openEnquire);
   enquireCloseBtn.addEventListener('click', closeEnquire);
   enquireOverlay.addEventListener('click', (e) => {
     if (enquireOverlay.classList.contains('minimized')) { openEnquire(); return; }
@@ -810,11 +803,6 @@
       setTimeout(minimizeEnquire, 400);
     });
   }
-
-  // Auto-open the assessment submission popup once, a few seconds after the page loads
-  setTimeout(() => {
-    if (!loginOverlay.classList.contains('open')) openEnquire();
-  }, 4000);
 
   const hamBtn = document.getElementById('hamBtn');
   const navLinks = document.getElementById('navLinks');
