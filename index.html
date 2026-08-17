@@ -314,6 +314,20 @@
     margin-top:1.2em; padding:.75em 1em; text-align:center; font-size:.85rem;
     color:var(--ink-soft); background:var(--ivory); border-radius:10px; border:1px dashed rgba(30,70,56,0.2);
   }
+  .prog-requirements{
+    margin:1em 0 0; padding:.9em 1em; background:var(--ivory); border-radius:10px;
+    border:1px solid rgba(30,70,56,0.1);
+  }
+  .prog-requirements p{
+    font-size:.74rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--green-deep); margin:0 0 .5em;
+  }
+  .prog-requirements ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.4em;}
+  .prog-requirements li{
+    display:flex; gap:.5em; font-size:.85rem; color:var(--ink); line-height:1.4;
+  }
+  .prog-requirements li svg{width:15px; height:15px; flex:none; color:var(--gold); margin-top:2px;}
+  html[dir="rtl"] .prog-requirements li{flex-direction:row-reverse; text-align:right;}
 
   /* ===== Accreditation ===== */
   .accred-grid{
@@ -539,6 +553,19 @@
           <span class="mode-badge" data-i18n="programs.modeBadge">Online &amp; Offline Classes</span>
           <h3 data-i18n="programs.tahfizTitle">Tahfiz</h3>
           <p data-i18n="programs.tahfizDesc">Structured, teacher-guided memorization of the Qur'an with tajweed, revision cycles, and regular ijazah-track assessment. Available both online and offline (in-person). Enrolment is open now.</p>
+          <div class="prog-requirements">
+            <p data-i18n="programs.requirementsLabel">Admission Requirements</p>
+            <ul>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+                <span data-i18n="programs.tahfizReq1">Age: 4 years and above</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+                <span data-i18n="programs.tahfizReq2">Must agree to Ubayyu bin Ka'ab Memorial College's parents and students rules and regulations</span>
+              </li>
+            </ul>
+          </div>
           <a href="https://form.jotform.com/262246550478058" target="_blank" rel="noopener" class="prog-apply-btn" data-i18n="programs.applyNow">Apply Now</a>
         </div>
         <div class="prog-card">
@@ -842,6 +869,9 @@
       'programs.subtitle': 'UBK Memorial College is organized into four categories, each at a different stage of admission.',
       'programs.statusOpen': 'Admission Open', 'programs.statusSoon': 'Coming Soon', 'programs.statusClosed': 'Not Yet Open',
       'programs.modeBadge': 'Online &amp; Offline Classes', 'programs.applyNow': 'Apply Now', 'programs.waitlistNote': 'Applications will open here in the future.',
+      'programs.requirementsLabel': 'Admission Requirements',
+      'programs.tahfizReq1': 'Age: 4 years and above',
+      'programs.tahfizReq2': "Must agree to Ubayyu bin Ka'ab Memorial College's parents and students rules and regulations",
       'programs.tahfizTitle': 'Tahfiz',
       'programs.tahfizDesc': "Structured, teacher-guided memorization of the Qur'an with tajweed, revision cycles, and regular ijazah-track assessment. Available both online and offline (in-person). Enrolment is open now.",
       'programs.islamicTitle': 'Islamic Studies &amp; Arabic',
@@ -902,6 +932,9 @@
       'programs.subtitle': 'An tsara Kwalejin UBK zuwa kashi hudu, kowanne yana matakin shiga daban.',
       'programs.statusOpen': 'Shiga A Bude Take', 'programs.statusSoon': 'Nan Gaba', 'programs.statusClosed': 'Ba a Bude Ba Tukuna',
       'programs.modeBadge': 'Aji Kan Layi &amp; Na Zahiri', 'programs.applyNow': 'Nemi Shiga Yanzu', 'programs.waitlistNote': 'Neman shiga zai bude a nan nan gaba.',
+      'programs.requirementsLabel': 'Bukatun Shiga',
+      'programs.tahfizReq1': 'Shekaru: Daga shekara 4 zuwa sama',
+      'programs.tahfizReq2': "Dole ne a yarda da ka'idoji da dokokin iyaye da dalibai na Kwalejin Tunawa da Ubayyu bin Ka'ab",
       'programs.tahfizTitle': 'Tahfiz',
       'programs.tahfizDesc': "Haddar Alqur'ani mai tsari karkashin jagorancin malami tare da tajweed, zagayowar maimaitawa, da jarrabawar ijazah akai-akai. Ana samu kan layi da na zahiri. Shiga a bude take yanzu.",
       'programs.islamicTitle': 'Nazarin Musulunci &amp; Larabci',
@@ -962,6 +995,9 @@
       'programs.subtitle': 'تنقسم كلية أُبيّ بن كعب التذكارية إلى أربعة أقسام، كل قسم في مرحلة مختلفة من القبول.',
       'programs.statusOpen': 'القبول مفتوح', 'programs.statusSoon': 'قريبًا', 'programs.statusClosed': 'غير مفتوح بعد',
       'programs.modeBadge': 'دراسة عن بُعد وحضوري', 'programs.applyNow': 'قدّم الآن', 'programs.waitlistNote': 'سيُفتح التقديم هنا في المستقبل.',
+      'programs.requirementsLabel': 'شروط القبول',
+      'programs.tahfizReq1': 'العمر: 4 سنوات فما فوق',
+      'programs.tahfizReq2': 'يجب الموافقة على لوائح وقواعد أولياء الأمور والطلاب الخاصة بكلية أُبَيّ بن كعب التذكارية',
       'programs.tahfizTitle': 'التحفيظ',
       'programs.tahfizDesc': 'حفظ منظم للقرآن الكريم بإشراف معلم، مع التجويد ودورات المراجعة وتقييم منتظم على مسار الإجازة. متاح عن بُعد وحضوريًا. القبول مفتوح الآن.',
       'programs.islamicTitle': 'الدراسات الإسلامية واللغة العربية',
