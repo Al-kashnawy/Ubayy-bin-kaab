@@ -195,6 +195,33 @@
     border-radius:10px; padding:.7em .9em; font-size:.85rem; margin:0 0 1em; text-align:center;
   }
   .auth-error.show{display:block;}
+
+  /* Online Class Panel */
+  .online-class-panel{
+    text-align:left; background:var(--ivory); border-radius:14px; padding:1.2em 1.1em;
+    margin-bottom:1.2em; border:1px solid rgba(30,70,56,0.1);
+  }
+  .ocp-label{
+    font-size:.72rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--green-deep); margin:0 0 .7em;
+  }
+  .ocp-row{display:flex; gap:.7em; align-items:flex-start; margin-bottom:.9em;}
+  .ocp-row svg{width:19px; height:19px; flex:none; color:var(--gold); margin-top:2px;}
+  .ocp-row strong{display:block; font-size:.85rem; color:var(--ink); margin-bottom:.15em;}
+  .ocp-row span{display:block; font-size:.82rem; color:var(--ink-soft); line-height:1.4;}
+  .ocp-join-btn{
+    display:block; text-align:center; width:100%; box-sizing:border-box; text-decoration:none;
+    padding:.65em 1em; font-size:.88rem; margin-bottom:.3em;
+  }
+  .ocp-announcements{border-top:1px dashed rgba(30,70,56,0.15); margin-top:1em; padding-top:1em;}
+  .ocp-empty{font-size:.82rem; color:var(--ink-soft); margin:0; font-style:italic;}
+  .announcement-item{
+    background:var(--white); border-radius:8px; padding:.7em .85em; margin-bottom:.5em;
+    border-left:3px solid var(--gold); font-size:.85rem; color:var(--ink);
+  }
+  .announcement-item time{display:block; font-size:.72rem; color:var(--ink-soft); margin-top:.3em;}
+  html[dir="rtl"] .ocp-row{flex-direction:row-reverse; text-align:right;}
+  html[dir="rtl"] .announcement-item{border-left:none; border-right:3px solid var(--gold);}
   .modal.modal-wide{max-width:520px; padding:28px 20px 20px;}
   .jotform-frame{width:100%; height:70vh; max-height:600px; border:none; border-radius:12px; display:block;}
   .field textarea{
@@ -795,6 +822,34 @@
       <p style="font-weight:700; color:var(--green-deep); margin-bottom:.2em;" id="dashboardEmail"></p>
       <p style="font-size:.8rem; color:var(--ink-soft); margin-bottom:.5em;" id="dashboardJoined"></p>
       <p style="font-size:.85rem; color:var(--ink); margin-bottom:1.4em;" id="dashboardStudentInfo"></p>
+
+      <div class="online-class-panel">
+        <p class="ocp-label" data-i18n="ocp.title">Online Classes</p>
+        <div class="ocp-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          <div>
+            <strong data-i18n="ocp.schedule">Schedule (Tahfiz)</strong>
+            <span data-i18n="ocp.scheduleValue">Monday &ndash; Wednesday, 6:00 AM &ndash; 12:00 PM</span>
+          </div>
+        </div>
+        <a href="https://chat.whatsapp.com/IqNeMUviuEoK7kYr2nydvh?s=cl&amp;p=a&amp;ilr=0" target="_blank" rel="noopener" class="btn btn-gold ocp-join-btn" data-i18n="ocp.joinBtn">Join Class on WhatsApp</a>
+
+        <div class="ocp-row" style="margin-top:1em;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
+          <div>
+            <strong data-i18n="ocp.materials">Study Materials</strong>
+            <span data-i18n="ocp.materialsSoon">Not available yet &mdash; check back soon.</span>
+          </div>
+        </div>
+
+        <div class="ocp-announcements">
+          <p class="ocp-label" data-i18n="ocp.announcements">Announcements</p>
+          <div id="announcementsList">
+            <p class="ocp-empty" data-i18n="ocp.noAnnouncements">No announcements yet.</p>
+          </div>
+        </div>
+      </div>
+
       <button type="button" class="btn btn-gold" id="dashboardAssessmentBtn" style="display:block; width:100%; margin-bottom:.8em; border:none; cursor:pointer;" data-i18n="dash.submitAssessment">Submit an Assessment</button>
       <button type="button" class="nav-login" id="resetPassBtn" style="width:100%; padding:.75em; border-radius:999px; margin-bottom:.8em;" data-i18n="dash.resetPassword">Reset Password</button>
       <p class="enquire-success" id="resetSuccess" style="margin-bottom:.8em;" data-i18n="dash.resetSent">Password reset email sent &mdash; check your inbox.</p>
@@ -906,6 +961,9 @@
       'login.createBtn': 'Create Account', 'login.signedInAs': 'Signed in as',
       'dash.submitAssessment': 'Submit an Assessment', 'dash.resetPassword': 'Reset Password',
       'dash.resetSent': 'Password reset email sent &mdash; check your inbox.', 'dash.needHelp': 'Need Help?', 'dash.logout': 'Log Out',
+      'ocp.title': 'Online Classes', 'ocp.schedule': 'Schedule (Tahfiz)', 'ocp.scheduleValue': 'Monday &ndash; Wednesday, 6:00 AM &ndash; 12:00 PM',
+      'ocp.joinBtn': 'Join Class on WhatsApp', 'ocp.materials': 'Study Materials', 'ocp.materialsSoon': 'Not available yet &mdash; check back soon.',
+      'ocp.announcements': 'Announcements', 'ocp.noAnnouncements': 'No announcements yet.',
       'assess.title': 'Submit Your Assessment',
       'assess.subtitle': "For online students &mdash; send in your assessment for review. This form is password-protected, so you'll be asked for the access code shared with you by the college.",
       'assess.openBtn': 'Open Assessment Form'
@@ -969,6 +1027,9 @@
       'login.createBtn': 'Kirkiri Asusu', 'login.signedInAs': 'An shiga a matsayin',
       'dash.submitAssessment': 'Aika Jarrabawa', 'dash.resetPassword': 'Sake Kalmar Sirri',
       'dash.resetSent': 'An aika imel na sake kalmar sirri &mdash; duba akwatin sakonninka.', 'dash.needHelp': 'Kana Bukatar Taimako?', 'dash.logout': 'Fita',
+      'ocp.title': 'Azuzuwan Kan Layi', 'ocp.schedule': 'Jadawali (Tahfiz)', 'ocp.scheduleValue': 'Litinin &ndash; Laraba, 6:00 na safe &ndash; 12:00 na rana',
+      'ocp.joinBtn': 'Shiga Aji akan WhatsApp', 'ocp.materials': 'Kayan Karatu', 'ocp.materialsSoon': 'Ba a samu ba tukuna &mdash; duba nan gaba.',
+      'ocp.announcements': 'Sanarwa', 'ocp.noAnnouncements': 'Babu sanarwa a yanzu.',
       'assess.title': 'Aika Jarrabawarka',
       'assess.subtitle': 'Ga daliban kan layi &mdash; aika jarrabawarka domin dubawa. Wannan fam din yana da kalmar shiga, don haka za a tambaye ka lambar shiga da kwalejin ta baka.',
       'assess.openBtn': 'Bude Fam din Jarrabawa'
@@ -1032,6 +1093,9 @@
       'login.createBtn': 'إنشاء الحساب', 'login.signedInAs': 'تم تسجيل الدخول باسم',
       'dash.submitAssessment': 'تقديم تقييم', 'dash.resetPassword': 'إعادة تعيين كلمة المرور',
       'dash.resetSent': 'تم إرسال بريد إعادة تعيين كلمة المرور &mdash; تحقق من بريدك الوارد.', 'dash.needHelp': 'تحتاج مساعدة؟', 'dash.logout': 'تسجيل الخروج',
+      'ocp.title': 'الحصص عبر الإنترنت', 'ocp.schedule': 'الجدول (تحفيظ)', 'ocp.scheduleValue': 'الاثنين &ndash; الأربعاء، 6:00 صباحًا &ndash; 12:00 ظهرًا',
+      'ocp.joinBtn': 'انضم للحصة عبر واتساب', 'ocp.materials': 'المواد الدراسية', 'ocp.materialsSoon': 'غير متوفرة بعد &mdash; يرجى المراجعة لاحقًا.',
+      'ocp.announcements': 'الإعلانات', 'ocp.noAnnouncements': 'لا توجد إعلانات حتى الآن.',
       'assess.title': 'قدّم تقييمك',
       'assess.subtitle': 'للطلاب عبر الإنترنت &mdash; أرسل تقييمك للمراجعة. هذا النموذج محمي بكلمة مرور، وسيُطلب منك رمز الدخول الذي زوّدتك به الكلية.',
       'assess.openBtn': 'افتح نموذج التقييم'
@@ -1126,6 +1190,30 @@
 
   const SIGNUP_ACCESS_CODE = 'UBK2026Signup';
 
+  function loadAnnouncements() {
+    const list = document.getElementById('announcementsList');
+    if (!list) return;
+    db.collection('announcements').orderBy('createdAt', 'desc').limit(5).get()
+      .then(snapshot => {
+        if (snapshot.empty) return; // leave the default "No announcements yet." message
+        list.innerHTML = '';
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          const item = document.createElement('div');
+          item.className = 'announcement-item';
+          const dateStr = data.createdAt && data.createdAt.toDate
+            ? data.createdAt.toDate().toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
+            : '';
+          item.innerHTML = `<span></span>${dateStr ? '<time></time>' : ''}`;
+          item.querySelector('span').textContent = data.text || '';
+          if (dateStr) item.querySelector('time').textContent = dateStr;
+          list.appendChild(item);
+        });
+      })
+      .catch(() => { /* announcements not readable yet; keep default empty message */ });
+  }
+
+
   signupForm.addEventListener('submit', (e) => {
     e.preventDefault();
     clearAuthError();
@@ -1207,6 +1295,7 @@
           }
         })
         .catch(() => { /* profile record not found or not readable; dashboard still works without it */ });
+      loadAnnouncements();
       loginOpenBtn.textContent = 'My Account';
     } else {
       dashboardView.style.display = 'none';
