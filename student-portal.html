@@ -1115,7 +1115,6 @@
       .finally(() => { resetPassBtn.disabled = false; resetPassBtn.textContent = 'Reset Password'; });
   });
   document.getElementById('dashboardAssessmentBtn').addEventListener('click', () => {
-    closeLogin();
     openEnquire();
   });
 
@@ -1159,8 +1158,6 @@
 
   loginOpenBtn.addEventListener('click', openLogin);
   loginCloseBtn.addEventListener('click', closeLogin);
-  loginOverlay.addEventListener('click', (e) => { if(e.target === loginOverlay) closeLogin(); });
-  document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && loginOverlay.classList.contains('open')) closeLogin(); });
 
   const enquireOverlay = document.getElementById('enquireOverlay');
   const enquireCloseBtn = document.getElementById('enquireCloseBtn');
