@@ -512,6 +512,9 @@
   .verify-result.ok{display:block; background:#eaf5ee; border:1px solid #2e7d4f; color:#17432b;}
   .verify-result.no{display:block; background:#fdecea; border:1px solid #b3261e; color:#6b1510;}
   .verify-result dl{margin:.6em 0 0; display:grid; grid-template-columns:auto 1fr; gap:.3em 1em;}
+  .verify-person{display:flex; gap:18px; align-items:flex-start; margin-top:.8em;}
+  .verify-photo{width:96px; height:120px; flex:none; border-radius:10px; object-fit:cover; background:#d7e9dd; border:2px solid #2e7d4f; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1.6rem; color:#17432b;}
+  .verify-person dl{margin:0;}
   .verify-result dt{font-weight:600;} .verify-result dd{margin:0;}
 </style>
 </head>
@@ -1089,7 +1092,7 @@
 
   /* ===== Registration verification =====
      Paste your Apps Script web-app URL (the one ending in /exec) below. */
-  const VERIFY_URL = 'https://script.google.com/macros/s/AKfycbyI7O9J_A2PSBFxtgseeEDC-KpYXm2nlceNVjCPVrsV3B1ay6oC9x-m-bvmNHnspDtw2w/exec';
+  const VERIFY_URL = 'https://script.google.com/macros/s/AKfycbyj0DVQfP_-CwXdKZS3dVKnx-uiOvlaX_03VSpDQpCHBFKEtdPI0EdOGll4CwzFt8DvqA/exec';
   const esc = t => String(t).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   async function verifyRegistration(){
     const inp = document.getElementById('vEmail'), err = document.getElementById('vEmailErr');
@@ -1107,7 +1110,11 @@
       const d = await r.json();
       if (d.found) {
         res.className = 'verify-result ok';
-        res.innerHTML = '<strong>&#10003; Registration found.</strong><dl><dt>Name</dt><dd>'+esc(d.name||'')+'</dd><dt>Category</dt><dd>'+esc(d.category||'-')+'</dd><dt>Reg. No.</dt><dd>'+esc(d.registrationNumber||'Not yet assigned')+'</dd></dl>';
+        const nm = d.name || '';
+        const okPhoto = typeof d.photo === 'string' && /^data:image\/(jpeg|png|gif|webp);base64,[A-Za-z0-9+\/=]+$/.test(d.photo);
+        const pic = okPhoto ? '<img class="verify-photo" alt="Photo of '+esc(nm)+'" src="'+d.photo+'">'
+          : '<div class="verify-photo" aria-hidden="true">'+esc(nm.split(/\s+/).map(w=>w[0]||'').slice(0,2).join('').toUpperCase())+'</div>';
+        res.innerHTML = '<strong>&#10003; Registration found.</strong><div class="verify-person">'+pic+'<dl><dt>Name</dt><dd>'+esc(nm)+'</dd><dt>Category</dt><dd>'+esc(d.category||'-')+'</dd><dt>Reg. No.</dt><dd>'+esc(d.registrationNumber||'Not yet assigned')+'</dd></dl></div>';
       } else {
         res.className = 'verify-result no';
         res.innerHTML = '<strong>No registration found for this email.</strong><br>Check the spelling, or use the email you entered on the admission form. If it still fails, contact the college office.';
