@@ -512,6 +512,7 @@
   .verify-result.ok{display:block; background:#eaf5ee; border:1px solid #2e7d4f; color:#17432b;}
   .verify-result.no{display:block; background:#fdecea; border:1px solid #b3261e; color:#6b1510;}
   .verify-result dl{margin:.6em 0 0; display:grid; grid-template-columns:auto 1fr; gap:.3em 1em;}
+  .verify-person + .verify-person{border-top:1px solid rgba(46,125,79,.35); padding-top:14px;}
   .verify-person{display:flex; flex-wrap:wrap; gap:16px; align-items:flex-start; margin-top:.8em; min-width:0;}
   .verify-person dl{flex:1 1 200px; min-width:0; grid-template-columns:auto minmax(0,1fr); overflow-wrap:anywhere;}
   .verify-result{overflow:hidden;}
@@ -1112,11 +1113,21 @@
       const d = await r.json();
       if (d.found) {
         res.className = 'verify-result ok';
-        const nm = d.name || '';
-        const okPhoto = typeof d.photo === 'string' && /^data:image\/(jpeg|png|gif|webp);base64,[A-Za-z0-9+\/=]+$/.test(d.photo);
-        const pic = okPhoto ? '<img class="verify-photo" alt="Photo of '+esc(nm)+'" src="'+d.photo+'">'
-          : '<div class="verify-photo" aria-hidden="true">'+esc(nm.split(/\s+/).map(w=>w[0]||'').slice(0,2).join('').toUpperCase())+'</div>';
-        res.innerHTML = '<strong>&#10003; Registration found.</strong><div class="verify-person">'+pic+'<dl><dt>Name</dt><dd>'+esc(nm)+'</dd><dt>Category</dt><dd>'+esc(d.category||'-')+'</dd><dt>Reg. No.</dt><dd>'+esc(d.registrationNumber||'Not yet assigned')+'</dd></dl></div>';
+        const list = Array.isArray(d.results) && d.results.length ? d.results : [d];
+        const initials = n => String(n||'').split(/\s+/).map(w=>w[0]||'').slice(0,2).join('').toUpperCase();
+        const person = p => {
+          const nm = p.name || '';
+          const okData = typeof p.photo === 'string' && /^data:image\/(jpeg|png|gif|webp);base64,[A-Za-z0-9+\/=]+$/.test(p.photo);
+          const okUrl = typeof p.photoUrl === 'string' && /^https:\/\/[^\s"'<>]+$/.test(p.photoUrl);
+          const src = okData ? p.photo : (okUrl ? p.photoUrl : '');
+          const pic = src ? '<img class="verify-photo" data-n="'+esc(nm)+'" alt="Photo of '+esc(nm)+'" referrerpolicy="no-referrer" src="'+esc(src)+'">'
+            : '<div class="verify-photo" aria-hidden="true">'+esc(initials(nm))+'</div>';
+          return '<div class="verify-person">'+pic+'<dl><dt>Name</dt><dd>'+esc(nm)+'</dd><dt>Category</dt><dd>'+esc(p.category||'-')+'</dd><dt>Reg. No.</dt><dd>'+esc(p.registrationNumber||'Not yet assigned')+'</dd></dl></div>';
+        };
+        res.innerHTML = '<strong>&#10003; '+(list.length > 1 ? list.length+' registrations found.' : 'Registration found.')+'</strong>' + list.map(person).join('');
+        res.querySelectorAll('img.verify-photo').forEach(im => im.addEventListener('error', () => {
+          const dv = document.createElement('div'); dv.className = 'verify-photo'; dv.textContent = initials(im.dataset.n); im.replaceWith(dv);
+        }));
       } else {
         res.className = 'verify-result no';
         res.innerHTML = '<strong>No registration found for this email.</strong><br>Check the spelling, or use the email you entered on the admission form. If it still fails, contact the college office.';
