@@ -512,8 +512,10 @@
   .verify-result.ok{display:block; background:#eaf5ee; border:1px solid #2e7d4f; color:#17432b;}
   .verify-result.no{display:block; background:#fdecea; border:1px solid #b3261e; color:#6b1510;}
   .verify-result dl{margin:.6em 0 0; display:grid; grid-template-columns:auto 1fr; gap:.3em 1em;}
-  .verify-person{display:flex; gap:18px; align-items:flex-start; margin-top:.8em;}
-  .verify-photo{width:96px; height:120px; flex:none; border-radius:10px; object-fit:cover; background:#d7e9dd; border:2px solid #2e7d4f; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1.6rem; color:#17432b;}
+  .verify-person{display:flex; flex-wrap:wrap; gap:16px; align-items:flex-start; margin-top:.8em; min-width:0;}
+  .verify-person dl{flex:1 1 200px; min-width:0; grid-template-columns:auto minmax(0,1fr); overflow-wrap:anywhere;}
+  .verify-result{overflow:hidden;}
+  .verify-photo{width:84px; height:105px; flex:none; border-radius:10px; object-fit:cover; background:#d7e9dd; border:2px solid #2e7d4f; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1.6rem; color:#17432b;}
   .verify-person dl{margin:0;}
   .verify-result dt{font-weight:600;} .verify-result dd{margin:0;}
 </style>
