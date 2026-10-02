@@ -519,6 +519,13 @@
   .verify-photo{width:84px; height:105px; flex:none; border-radius:10px; object-fit:cover; background:#d7e9dd; border:2px solid #2e7d4f; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1.6rem; color:#17432b;}
   .verify-person dl{margin:0;}
   .verify-result dt{font-weight:600;} .verify-result dd{margin:0;}
+
+  /* ===== Islamic Studies countdown ===== */
+  .countdown{display:flex; gap:8px; margin:1em 0;}
+  .cd-box{flex:1; min-width:0; text-align:center; background:var(--green-deep); color:var(--white); border-radius:10px; padding:.6em .2em;}
+  .cd-box b{display:block; font-size:1.4rem; line-height:1.1; font-variant-numeric:tabular-nums;}
+  .cd-box span{font-size:.62rem; letter-spacing:.06em; text-transform:uppercase; opacity:.85;}
+  .prog-apply-btn.is-locked{background:#E3DDD0; color:#7A7266; cursor:not-allowed; pointer-events:none; box-shadow:none;}
 </style>
 </head>
 <body>
@@ -550,7 +557,7 @@
         <li><a href="#mission" data-i18n="nav.mission">Mission &amp; Vision</a></li>
         <li><a href="#programs" data-i18n="nav.programs">Programs</a></li>
         <li><a href="#location" data-i18n="nav.location">Location</a></li>
-        <li><a href="#verify">Verify</a></li>
+        <li><a href="#verify" data-i18n="nav.verify">Verify</a></li>
       </ul>
       <a href="#admissions" class="nav-cta" data-i18n="nav.admissions">Admissions</a>
       <a href="student-portal.html" class="nav-cta nav-login" data-i18n="nav.login">Login</a>
@@ -599,7 +606,7 @@
         <span class="eyebrow" data-i18n="about.eyebrow">Our Namesake</span>
         <h2 data-i18n="about.title">Carrying a Name Built on the Qur'an</h2>
         <p data-i18n="about.p1">Ubayy ibn Ka'b was among the earliest scribes of revelation and the companion most celebrated for his mastery of Qur'anic recitation. Our college takes his name as both an honour and a standard &mdash; a daily reminder of the discipline, sincerity, and depth of knowledge we ask of every student who memorizes the Book here.</p>
-        <p data-i18n="about.p2">The college is organized into four categories &mdash; Tahfiz, Islamic Studies &amp; Arabic, Western Education (Primary to Secondary), and Adult Non-Arabic Islamic Studies &mdash; opening for admission in stages. Tahfiz is open now, with the other categories to follow.</p>
+        <p data-i18n="about.p2">The college is organized into four categories &mdash; Tahfiz, Islamic Studies &amp; Arabic, Western Education (Primary to Secondary), and Adult Non-Arabic Islamic Studies &mdash; opening for admission in stages. Tahfiz is open now, Islamic Studies &amp; Arabic opens on 15 October 2026, and the other categories will follow.</p>
       </div>
     </div>
   </section>
@@ -664,11 +671,17 @@
           <div class="prog-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="#F8F3E6" stroke-width="1.8"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5"/></svg>
           </div>
-          <span class="status-badge is-soon" data-i18n="programs.statusSoon">Coming Soon</span>
+          <span class="status-badge is-soon" id="islStatus" data-i18n="isl.soon">Opening Soon</span>
           <span class="mode-badge" data-i18n="programs.modeBadge">Online &amp; Offline Classes</span>
           <h3 data-i18n="programs.islamicTitle">Islamic Studies &amp; Arabic</h3>
-          <p data-i18n="programs.islamicDesc">Aqeedah, Fiqh, Seerah, Hadith, and Arabic language, taught to build clear understanding and lived practice. Will be offered both online and offline (in-person). This section is planned for the future and is not yet open for admission.</p>
-          <p class="prog-waitlist-note" data-i18n="programs.waitlistNote">Applications will open here in the future.</p>
+          <p data-i18n="isl.desc">Aqeedah, Fiqh, Seerah, Hadith, and Arabic language, taught to build clear understanding and lived practice. Offered both online and offline (in-person). Admission opens on 15 October 2026.</p>
+          <div class="countdown" id="islCountdown" data-target="2026-10-15T00:00:00+01:00" role="timer" aria-live="off" aria-label="Time until Islamic Studies admission opens" data-i18n-aria="isl.aria">
+            <div class="cd-box"><b id="cdD">--</b><span data-i18n="isl.days">Days</span></div>
+            <div class="cd-box"><b id="cdH">--</b><span data-i18n="isl.hours">Hours</span></div>
+            <div class="cd-box"><b id="cdM">--</b><span data-i18n="isl.mins">Mins</span></div>
+            <div class="cd-box"><b id="cdS">--</b><span data-i18n="isl.secs">Secs</span></div>
+          </div>
+          <a id="islApply" class="prog-apply-btn is-locked" aria-disabled="true" data-form="https://docs.google.com/forms/d/1r3ctBf3hS0fR7oZqppfMe-ibc_LQm-5BYWkj74xeNhY/viewform" target="_blank" rel="noopener" data-i18n="isl.opens">Opens 15 October 2026</a>
         </div>
         <div class="prog-card">
           <div class="prog-icon">
@@ -765,16 +778,16 @@
   <section id="verify" style="padding-top:0;">
     <div class="wrap">
       <div class="verify-card reveal">
-        <span class="eyebrow">Students</span>
-        <h2>Verify Your Registration</h2>
-        <p style="color:var(--ink-soft);">Enter the email address you used on the admission form to see your registered name, category and registration number.</p>
+        <span class="eyebrow" data-i18n="verify.eyebrow">Students</span>
+        <h2 data-i18n="verify.title">Verify Your Registration</h2>
+        <p style="color:var(--ink-soft);" data-i18n="verify.intro">Enter the email address you used on the admission form to see your registered name, category and registration number.</p>
         <div id="verifyForm" role="form" aria-label="Registration verification">
           <div class="field">
-            <label for="vEmail">Applicant or guardian email</label>
-            <input id="vEmail" type="email" autocomplete="email" placeholder="The email used on the application form" maxlength="120">
+            <label for="vEmail" data-i18n="verify.label">Applicant or guardian email</label>
+            <input id="vEmail" type="email" autocomplete="email" placeholder="The email used on the application form" data-i18n-ph="verify.ph" maxlength="120">
             <div class="err" id="vEmailErr" role="alert"></div>
           </div>
-          <button type="button" class="verify-btn" id="vBtn">Verify Details</button>
+          <button type="button" class="verify-btn" id="vBtn" data-i18n="verify.btn">Verify Details</button>
         </div>
         <div class="verify-result" id="vResult" aria-live="polite"></div>
       </div>
@@ -785,7 +798,7 @@
   <section id="admissions" style="padding-top:0;">
     <div class="cta-banner reveal">
       <h2 data-i18n="admissions.title">Tahfiz Admission Now Open</h2>
-      <p data-i18n="admissions.text">Give your child a foundation in the Qur'an through our Tahfiz section, open for enrolment now. Our Islamic Studies &amp; Arabic and Adult Non-Arabic Islamic Studies categories will open in the future &mdash; visit or reach out to learn more.</p>
+      <p data-i18n="admissions.text">Give your child a foundation in the Qur'an through our Tahfiz section, open for enrolment now. Our Islamic Studies &amp; Arabic section opens for admission on 15 October 2026, and Adult Non-Arabic Islamic Studies will open in the future &mdash; visit or reach out to learn more.</p>
       <div class="cta-row" style="justify-content:center;">
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSdN6EqKRm7kkbFWlPysQfYvfd2pmHw2097QHHKmOtqagwPcBQ/viewform" target="_blank" rel="noopener" class="btn" style="background:var(--green-deep); color:var(--white);" data-i18n="admissions.apply">Apply for Admission</a>
         <a href="#location" class="btn btn-gold" data-i18n="admissions.directions">Get Directions &amp; Contact Details</a>
@@ -849,7 +862,7 @@
       'about.quoteSource': "&mdash; attributed to the Prophet Muhammad \u06d6, on his companion Ubayy ibn Ka'b",
       'about.eyebrow': 'Our Namesake', 'about.title': "Carrying a Name Built on the Qur'an",
       'about.p1': "Ubayy ibn Ka'b was among the earliest scribes of revelation and the companion most celebrated for his mastery of Qur'anic recitation. Our college takes his name as both an honour and a standard &mdash; a daily reminder of the discipline, sincerity, and depth of knowledge we ask of every student who memorizes the Book here.",
-      'about.p2': 'The college is organized into four categories &mdash; Tahfiz, Islamic Studies &amp; Arabic, Western Education (Primary to Secondary), and Adult Non-Arabic Islamic Studies &mdash; opening for admission in stages. Tahfiz is open now, with the other categories to follow.',
+      'about.p2': 'The college is organized into four categories &mdash; Tahfiz, Islamic Studies &amp; Arabic, Western Education (Primary to Secondary), and Adult Non-Arabic Islamic Studies &mdash; opening for admission in stages. Tahfiz is open now, Islamic Studies &amp; Arabic opens on 15 October 2026, and the other categories will follow.',
       'mission.eyebrow': 'Our Purpose', 'mission.title': 'Mission &amp; Vision',
       'mission.missionHead': 'Mission',
       'mission.missionText': "Our mission at Ubayyu bin Ka'ab Memorial College is to prioritize genuine quality and high academic standards in Islamic education. While many tahfiz schools focus mainly on celebrations and graduating students without ensuring they possess accurate and adequate knowledge, we take a different approach. We train our students not only to memorize the Holy Qur'an and authentic Hadith, but also to understand, internalize, and practice the knowledge they acquire so that it shapes their character, conduct, and daily lives.",
@@ -861,6 +874,34 @@
       'programs.subtitle': 'UBK Memorial College is organized into four categories, each at a different stage of admission.',
       'programs.statusOpen': 'Admission Open', 'programs.statusSoon': 'Coming Soon', 'programs.statusClosed': 'Not Yet Open',
       'programs.modeBadge': 'Online &amp; Offline Classes', 'programs.applyNow': 'Apply Now', 'programs.waitlistNote': 'Applications will open here in the future.',
+      'isl.soon': 'Opening Soon',
+      'isl.desc': 'Aqeedah, Fiqh, Seerah, Hadith, and Arabic language, taught to build clear understanding and lived practice. Offered both online and offline (in-person). Admission opens on 15 October 2026.',
+      'isl.days': 'Days',
+      'isl.hours': 'Hours',
+      'isl.mins': 'Mins',
+      'isl.secs': 'Secs',
+      'isl.opens': 'Opens 15 October 2026',
+      'nav.verify': 'Verify',
+      'verify.eyebrow': 'Students',
+      'verify.title': 'Verify Your Registration',
+      'verify.intro': 'Enter the email address you used on the admission form to see your registered name, category and registration number.',
+      'verify.label': 'Applicant or guardian email',
+      'verify.ph': 'The email used on the application form',
+      'verify.btn': 'Verify Details',
+      'verify.checking': 'Checking...',
+      'verify.badEmail': 'Enter a valid email address.',
+      'verify.notConnected': 'Verification is not connected yet. Please contact the college.',
+      'verify.found': 'Registration found.',
+      'verify.foundMany': '{n} registrations found.',
+      'verify.name': 'Name',
+      'verify.category': 'Category',
+      'verify.reg': 'Reg. No.',
+      'verify.notAssigned': 'Not yet assigned',
+      'verify.photoOf': 'Photo of ',
+      'verify.nf1': 'No registration found for this email.',
+      'verify.nf2': 'Check the spelling, or use the email you entered on the admission form. If it still fails, contact the college office.',
+      'verify.net': 'Could not reach the verification service. Please try again shortly.',
+      'isl.aria': 'Time until Islamic Studies admission opens',
       'programs.requirementsLabel': 'Admission Requirements',
       'programs.tahfizReq1': 'Age: 4 years and above',
       'programs.tahfizReq2': "Must agree to Ubayyu bin Ka'ab Memorial College's parents and students rules and regulations",
@@ -883,7 +924,7 @@
       'location.enquiriesLabel': 'Enquiries', 'location.phoneLabel': 'Phone',
       'location.mapCity': 'Makera, Kaduna South', 'location.mapAddress': 'Dandali Road &middot; Kaduna State, Nigeria',
       'admissions.title': 'Tahfiz Admission Now Open',
-      'admissions.text': "Give your child a foundation in the Qur'an through our Tahfiz section, open for enrolment now. Our Islamic Studies &amp; Arabic and Adult Non-Arabic Islamic Studies categories will open in the future &mdash; visit or reach out to learn more.",
+      'admissions.text': "Give your child a foundation in the Qur'an through our Tahfiz section, open for enrolment now. Our Islamic Studies &amp; Arabic section opens for admission on 15 October 2026, and Adult Non-Arabic Islamic Studies will open in the future &mdash; visit or reach out to learn more.",
       'admissions.apply': 'Apply for Admission', 'admissions.directions': 'Get Directions &amp; Contact Details',
       'admissions.constitutionLink': 'Read the College Constitution &amp; Rules (PDF)',
       'footer.tagline': 'An Islamic college offering Tahfiz, Islamic Studies &amp; Arabic, and Adult Non-Arabic Islamic Studies in Kaduna State, Nigeria.',
@@ -918,7 +959,7 @@
       'about.quoteSource': "&mdash; an jingina wa Annabi Muhammad \u06d6, game da sahabinsa Ubayy ibn Ka'b",
       'about.eyebrow': 'Sunan da Muke Dauke da shi', 'about.title': "Dauke da Suna da aka Gina bisa Alqur'ani",
       'about.p1': "Ubayy ibn Ka'b yana daga cikin farkon marubuta wahayi kuma sahabi da aka fi yaba masa saboda kwarewarsa a karatun Alqur'ani. Kwalejinmu ta dauki sunansa a matsayin girmamawa da ma'auni &mdash; tunatarwa ta yau da kullum kan hakuri, gaskiya, da zurfin ilimin da muke bukata daga kowane dalibi da yake haddar Littafi a nan.",
-      'about.p2': 'An tsara kwalejin zuwa kashi hudu &mdash; Tahfiz, Nazarin Musulunci &amp; Larabci, Ilimin Yamma (Firamare zuwa Sakandare), da Nazarin Musulunci na Manya (ba da Larabci ba) &mdash; ana bude shiga a matakai. Tahfiz a bude take yanzu, sauran kashe-kashen za su biyo baya.',
+      'about.p2': 'An tsara kwalejin zuwa kashi hudu &mdash; Tahfiz, Nazarin Musulunci &amp; Larabci, Ilimin Yamma (Firamare zuwa Sakandare), da Nazarin Musulunci na Manya (ba da Larabci ba) &mdash; ana bude shiga a matakai. Tahfiz a bude take yanzu, Nazarin Musulunci &amp; Larabci zai bude ranar 15 ga Oktoba, 2026, sauran kashe-kashen kuma za su biyo baya.',
       'mission.eyebrow': 'Manufarmu', 'mission.title': 'Manufa &amp; Hangen Nesa',
       'mission.missionHead': 'Manufa',
       'mission.missionText': "Manufar Kwalejin Ubayyu bin Ka'ab Memorial ita ce ba da muhimmanci ga ingancin gaskiya da manyan matakan ilimi a fannin ilimin Musulunci. Yayin da makarantun tahfiz da yawa ke mayar da hankali kan bukukuwa da kammala karatun dalibai ba tare da tabbatar da suna da isasshen ilimi ba, mu muna bin wata hanya dabam. Muna horar da dalibanmu ba kawai su haddace Alqur'ani mai girma da Hadisai na gaskiya ba, har ma su fahimta, su dauka a zuciya, kuma su aiwatar da ilimin da suka samu domin ya tsara halayensu, dabi'unsu, da rayuwarsu ta yau da kullum.",
@@ -930,6 +971,34 @@
       'programs.subtitle': 'An tsara Kwalejin UBK zuwa kashi hudu, kowanne yana matakin shiga daban.',
       'programs.statusOpen': 'Shiga A Bude Take', 'programs.statusSoon': 'Nan Gaba', 'programs.statusClosed': 'Ba a Bude Ba Tukuna',
       'programs.modeBadge': 'Aji Kan Layi &amp; Na Zahiri', 'programs.applyNow': 'Nemi Shiga Yanzu', 'programs.waitlistNote': 'Neman shiga zai bude a nan nan gaba.',
+      'isl.soon': 'Za a Buɗe Nan Ba Da Daɗewa Ba',
+      'isl.desc': 'Aqeedah, Fiqh, Seerah, Hadisi, da harshen Larabci, ana koyarwa don gina fahimta mai tsabta da aiki da ilimi. Ana koyarwa ta yanar gizo da kuma ta zahiri. Za a buɗe neman shiga ranar 15 ga Oktoba, 2026.',
+      'isl.days': 'Kwanaki',
+      'isl.hours': 'Awanni',
+      'isl.mins': 'Mintuna',
+      'isl.secs': 'Daƙiƙu',
+      'isl.opens': 'Za a buɗe 15 ga Oktoba, 2026',
+      'nav.verify': 'Tabbatarwa',
+      'verify.eyebrow': 'Ɗalibai',
+      'verify.title': 'Tabbatar da Rajistarka',
+      'verify.intro': 'Shigar da adireshin imel ɗin da ka yi amfani da shi a fom ɗin neman shiga domin ganin sunanka da aka yi wa rajista, rukuni da lambar rajista.',
+      'verify.label': 'Imel na mai nema ko na iyaye/waliyyi',
+      'verify.ph': 'Imel ɗin da aka yi amfani da shi a fom ɗin neman shiga',
+      'verify.btn': 'Tabbatar da Bayanai',
+      'verify.checking': 'Ana dubawa...',
+      'verify.badEmail': 'Shigar da adireshin imel mai inganci.',
+      'verify.notConnected': 'Ba a haɗa tsarin tabbatarwa tukuna ba. Da fatan a tuntuɓi kwalejin.',
+      'verify.found': 'An sami rajista.',
+      'verify.foundMany': 'An sami rajista guda {n}.',
+      'verify.name': 'Suna',
+      'verify.category': 'Rukuni',
+      'verify.reg': 'Lambar Rajista',
+      'verify.notAssigned': 'Ba a ba da ita tukuna',
+      'verify.photoOf': 'Hoton ',
+      'verify.nf1': 'Ba a sami rajista da wannan imel ɗin ba.',
+      'verify.nf2': 'Duba rubutun imel ɗin, ko ka yi amfani da imel ɗin da ka shigar a fom ɗin neman shiga. Idan har yanzu ba a samu ba, tuntuɓi ofishin kwalejin.',
+      'verify.net': 'Ba a iya haɗawa da tsarin tabbatarwa ba. Da fatan a sake gwadawa nan da ɗan lokaci.',
+      'isl.aria': 'Lokacin da ya rage kafin a buɗe shiga don Nazarin Musulunci',
       'programs.requirementsLabel': 'Bukatun Shiga',
       'programs.tahfizReq1': 'Shekaru: Daga shekara 4 zuwa sama',
       'programs.tahfizReq2': "Dole ne a yarda da ka'idoji da dokokin iyaye da dalibai na Kwalejin Tunawa da Ubayyu bin Ka'ab",
@@ -952,7 +1021,7 @@
       'location.enquiriesLabel': 'Tambayoyi', 'location.phoneLabel': 'Waya',
       'location.mapCity': 'Makera, Kaduna ta Kudu', 'location.mapAddress': 'Titin Dandali &middot; Jihar Kaduna, Najeriya',
       'admissions.title': 'Shigar Tahfiz A Bude Take Yanzu',
-      'admissions.text': "Ba da wa danka/diyarka tushen Alqur'ani ta sashen Tahfiz namu, wanda a bude yake yanzu. Sassan Nazarin Musulunci &amp; Larabci da na Manya za su bude nan gaba &mdash; ziyarce mu ko tuntube mu don karin bayani.",
+      'admissions.text': "Ba da wa danka/diyarka tushen Alqur'ani ta sashen Tahfiz namu, wanda a bude yake yanzu. Sashen Nazarin Musulunci &amp; Larabci zai bude don neman shiga ranar 15 ga Oktoba, 2026, yayin da na Manya zai bude nan gaba &mdash; ziyarce mu ko tuntube mu don karin bayani.",
       'admissions.apply': 'Nemi Shiga', 'admissions.directions': 'Samu Hanya &amp; Bayanan Tuntuba',
       'admissions.constitutionLink': 'Karanta Kundin Tsarin Mulki na Kwaleji (PDF)',
       'footer.tagline': 'Kwalejin Musulunci mai bayar da Tahfiz, Nazarin Musulunci &amp; Larabci, da Nazarin Musulunci na Manya a Jihar Kaduna, Najeriya.',
@@ -987,7 +1056,7 @@
       'about.quoteSource': '&mdash; منسوب إلى النبي محمد ﷺ، عن صحابيه أُبيّ بن كعب',
       'about.eyebrow': 'اسمنا', 'about.title': 'اسمٌ بُني على القرآن',
       'about.p1': 'كان أُبيّ بن كعب من أوائل كتبة الوحي، والصحابي الأشهر بإتقانه لتلاوة القرآن. اتخذت كليتنا اسمه تكريمًا ومعيارًا &mdash; تذكيرًا يوميًا بالانضباط والإخلاص وعمق العلم الذي نطلبه من كل طالب يحفظ الكتاب هنا.',
-      'about.p2': 'تنقسم الكلية إلى أربعة أقسام &mdash; التحفيظ، والدراسات الإسلامية واللغة العربية، والتعليم الغربي (من الابتدائي إلى الثانوي)، ودراسات إسلامية للبالغين بغير العربية &mdash; ويُفتح القبول فيها على مراحل. التحفيظ مفتوح الآن، وستتبعه بقية الأقسام.',
+      'about.p2': 'تنقسم الكلية إلى أربعة أقسام &mdash; التحفيظ، والدراسات الإسلامية واللغة العربية، والتعليم الغربي (من الابتدائي إلى الثانوي)، ودراسات إسلامية للبالغين بغير العربية &mdash; ويُفتح القبول فيها على مراحل. التحفيظ مفتوح الآن، وسيُفتح قسم الدراسات الإسلامية واللغة العربية في 15 أكتوبر 2026، وستتبعه بقية الأقسام.',
       'mission.eyebrow': 'غايتنا', 'mission.title': 'الرسالة والرؤية',
       'mission.missionHead': 'الرسالة',
       'mission.missionText': 'رسالتنا في كلية أُبيّ بن كعب التذكارية هي إعطاء الأولوية لجودة حقيقية ومعايير أكاديمية عالية في التعليم الإسلامي. وبينما تركز كثير من مدارس التحفيظ على الاحتفالات وتخريج الطلاب دون ضمان امتلاكهم علمًا دقيقًا وكافيًا، نتبع نهجًا مختلفًا. ندرّب طلابنا ليس فقط على حفظ القرآن الكريم والحديث الصحيح، بل أيضًا على فهم واستيعاب وتطبيق ما يتعلمونه بحيث يشكّل ذلك أخلاقهم وسلوكهم وحياتهم اليومية.',
@@ -999,6 +1068,34 @@
       'programs.subtitle': 'تنقسم كلية أُبيّ بن كعب التذكارية إلى أربعة أقسام، كل قسم في مرحلة مختلفة من القبول.',
       'programs.statusOpen': 'القبول مفتوح', 'programs.statusSoon': 'قريبًا', 'programs.statusClosed': 'غير مفتوح بعد',
       'programs.modeBadge': 'دراسة عن بُعد وحضوري', 'programs.applyNow': 'قدّم الآن', 'programs.waitlistNote': 'سيُفتح التقديم هنا في المستقبل.',
+      'isl.soon': 'يُفتح قريبًا',
+      'isl.desc': 'العقيدة والفقه والسيرة والحديث واللغة العربية، تُدرَّس لبناء فهم واضح وتطبيق عملي. تُقدَّم عن بُعد وحضوريًا. يُفتح باب القبول في 15 أكتوبر 2026.',
+      'isl.days': 'أيام',
+      'isl.hours': 'ساعات',
+      'isl.mins': 'دقائق',
+      'isl.secs': 'ثوانٍ',
+      'isl.opens': 'يُفتح في 15 أكتوبر 2026',
+      'nav.verify': 'تحقق',
+      'verify.eyebrow': 'الطلاب',
+      'verify.title': 'تحقق من تسجيلك',
+      'verify.intro': 'أدخل البريد الإلكتروني الذي استخدمته في نموذج القبول لعرض اسمك المسجّل وفئتك ورقم تسجيلك.',
+      'verify.label': 'البريد الإلكتروني للمتقدم أو ولي الأمر',
+      'verify.ph': 'البريد الإلكتروني المستخدم في نموذج التقديم',
+      'verify.btn': 'تحقق من البيانات',
+      'verify.checking': 'جارٍ التحقق...',
+      'verify.badEmail': 'أدخل عنوان بريد إلكتروني صحيحًا.',
+      'verify.notConnected': 'خدمة التحقق غير متصلة بعد. يرجى التواصل مع الكلية.',
+      'verify.found': 'تم العثور على التسجيل.',
+      'verify.foundMany': 'تم العثور على {n} تسجيلات.',
+      'verify.name': 'الاسم',
+      'verify.category': 'الفئة',
+      'verify.reg': 'رقم التسجيل',
+      'verify.notAssigned': 'لم يُخصَّص بعد',
+      'verify.photoOf': 'صورة ',
+      'verify.nf1': 'لم يتم العثور على تسجيل لهذا البريد الإلكتروني.',
+      'verify.nf2': 'تحقق من كتابة البريد، أو استخدم البريد الذي أدخلته في نموذج القبول. وإذا استمر الفشل فتواصل مع مكتب الكلية.',
+      'verify.net': 'تعذّر الوصول إلى خدمة التحقق. يرجى المحاولة مرة أخرى بعد قليل.',
+      'isl.aria': 'الوقت المتبقي لفتح باب القبول في الدراسات الإسلامية',
       'programs.requirementsLabel': 'شروط القبول',
       'programs.tahfizReq1': 'العمر: 4 سنوات فما فوق',
       'programs.tahfizReq2': 'يجب الموافقة على لوائح وقواعد أولياء الأمور والطلاب الخاصة بكلية أُبَيّ بن كعب التذكارية',
@@ -1021,7 +1118,7 @@
       'location.enquiriesLabel': 'الاستفسارات', 'location.phoneLabel': 'الهاتف',
       'location.mapCity': 'ماكيرا، كادونا الجنوبية', 'location.mapAddress': 'طريق داندالي &middot; ولاية كادونا، نيجيريا',
       'admissions.title': 'القبول في التحفيظ مفتوح الآن',
-      'admissions.text': 'امنح طفلك أساسًا في القرآن من خلال قسم التحفيظ المفتوح للتسجيل الآن. سيُفتح قسما الدراسات الإسلامية والعربية والدراسات الإسلامية للبالغين لاحقًا &mdash; تفضل بزيارتنا أو تواصل معنا لمزيد من المعلومات.',
+      'admissions.text': 'امنح طفلك أساسًا في القرآن من خلال قسم التحفيظ المفتوح للتسجيل الآن. سيُفتح باب القبول في قسم الدراسات الإسلامية واللغة العربية في 15 أكتوبر 2026، بينما سيُفتح قسم الدراسات الإسلامية للبالغين لاحقًا &mdash; تفضل بزيارتنا أو تواصل معنا لمزيد من المعلومات.',
       'admissions.apply': 'قدّم للقبول', 'admissions.directions': 'الاتجاهات وبيانات التواصل',
       'admissions.constitutionLink': 'اقرأ دستور ولوائح الكلية (PDF)',
       'footer.tagline': 'كلية إسلامية تقدّم التحفيظ والدراسات الإسلامية والعربية ودراسات إسلامية للبالغين في ولاية كادونا، نيجيريا.',
@@ -1052,6 +1149,8 @@
       const key = el.getAttribute('data-i18n');
       if (dict[key] !== undefined) el.innerHTML = dict[key];
     });
+    document.querySelectorAll('[data-i18n-ph]').forEach(el => { const v = dict[el.getAttribute('data-i18n-ph')]; if (v !== undefined) el.placeholder = v; });
+    document.querySelectorAll('[data-i18n-aria]').forEach(el => { const v = dict[el.getAttribute('data-i18n-aria')]; if (v !== undefined) el.setAttribute('aria-label', v); });
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -1097,17 +1196,18 @@
      Paste your Apps Script web-app URL (the one ending in /exec) below. */
   const VERIFY_URL = 'https://script.google.com/macros/s/AKfycbyj0DVQfP_-CwXdKZS3dVKnx-uiOvlaX_03VSpDQpCHBFKEtdPI0EdOGll4CwzFt8DvqA/exec';
   const esc = t => String(t).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const T = k => { const d = translations[document.documentElement.lang] || translations.en; return d[k] !== undefined ? d[k] : translations.en[k]; };
   async function verifyRegistration(){
     const inp = document.getElementById('vEmail'), err = document.getElementById('vEmailErr');
     const res = document.getElementById('vResult'), btn = document.getElementById('vBtn');
     const email = inp.value.trim().toLowerCase();
     const ok = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
-    err.textContent = ok ? '' : 'Enter a valid email address.';
+    err.textContent = ok ? '' : T('verify.badEmail');
     inp.classList.toggle('bad', !ok);
     res.className = 'verify-result';
     if (!ok) return;
-    if (!VERIFY_URL) { res.className = 'verify-result no'; res.textContent = 'Verification is not connected yet. Please contact the college.'; return; }
-    btn.disabled = true; btn.textContent = 'Checking...';
+    if (!VERIFY_URL) { res.className = 'verify-result no'; res.textContent = T('verify.notConnected'); return; }
+    btn.disabled = true; btn.textContent = T('verify.checking');
     try {
       const r = await fetch(VERIFY_URL + '?email=' + encodeURIComponent(email));
       const d = await r.json();
@@ -1120,26 +1220,55 @@
           const okData = typeof p.photo === 'string' && /^data:image\/(jpeg|png|gif|webp);base64,[A-Za-z0-9+\/=]+$/.test(p.photo);
           const okUrl = typeof p.photoUrl === 'string' && /^https:\/\/[^\s"'<>]+$/.test(p.photoUrl);
           const src = okData ? p.photo : (okUrl ? p.photoUrl : '');
-          const pic = src ? '<img class="verify-photo" data-n="'+esc(nm)+'" alt="Photo of '+esc(nm)+'" referrerpolicy="no-referrer" src="'+esc(src)+'">'
+          const pic = src ? '<img class="verify-photo" data-n="'+esc(nm)+'" alt="'+esc(T('verify.photoOf')+nm)+'" referrerpolicy="no-referrer" src="'+esc(src)+'">'
             : '<div class="verify-photo" aria-hidden="true">'+esc(initials(nm))+'</div>';
-          return '<div class="verify-person">'+pic+'<dl><dt>Name</dt><dd>'+esc(nm)+'</dd><dt>Category</dt><dd>'+esc(p.category||'-')+'</dd><dt>Reg. No.</dt><dd>'+esc(p.registrationNumber||'Not yet assigned')+'</dd></dl></div>';
+          const rn = p.registrationNumber && p.registrationNumber !== 'Not yet assigned' ? p.registrationNumber : T('verify.notAssigned');
+          return '<div class="verify-person">'+pic+'<dl><dt>'+esc(T('verify.name'))+'</dt><dd>'+esc(nm)+'</dd><dt>'+esc(T('verify.category'))+'</dt><dd>'+esc(p.category||'-')+'</dd><dt>'+esc(T('verify.reg'))+'</dt><dd>'+esc(rn)+'</dd></dl></div>';
         };
-        res.innerHTML = '<strong>&#10003; '+(list.length > 1 ? list.length+' registrations found.' : 'Registration found.')+'</strong>' + list.map(person).join('');
+        res.innerHTML = '<strong>&#10003; '+esc(list.length > 1 ? T('verify.foundMany').replace('{n}', list.length) : T('verify.found'))+'</strong>' + list.map(person).join('');
         res.querySelectorAll('img.verify-photo').forEach(im => im.addEventListener('error', () => {
           const dv = document.createElement('div'); dv.className = 'verify-photo'; dv.textContent = initials(im.dataset.n); im.replaceWith(dv);
         }));
       } else {
         res.className = 'verify-result no';
-        res.innerHTML = '<strong>No registration found for this email.</strong><br>Check the spelling, or use the email you entered on the admission form. If it still fails, contact the college office.';
+        res.innerHTML = '<strong>'+esc(T('verify.nf1'))+'</strong><br>'+esc(T('verify.nf2'));
       }
     } catch (e) {
       res.className = 'verify-result no';
-      res.textContent = 'Could not reach the verification service. Please try again shortly.';
+      res.textContent = T('verify.net');
     }
-    btn.disabled = false; btn.textContent = 'Verify Details';
+    btn.disabled = false; btn.textContent = T('verify.btn');
   }
   document.getElementById('vBtn').addEventListener('click', verifyRegistration);
   document.getElementById('vEmail').addEventListener('keydown', e => { if(e.key==='Enter') verifyRegistration(); });
+
+  /* ===== Islamic Studies countdown: admission opens 15 Oct 2026, 00:00 Nigeria time ===== */
+  (function(){
+    const box = document.getElementById('islCountdown'); if (!box) return;
+    const target = new Date(box.dataset.target).getTime();
+    const badge = document.getElementById('islStatus'), btn = document.getElementById('islApply');
+    const pad = n => String(n).padStart(2,'0');
+    let timer;
+    function tick(){
+      const diff = target - Date.now();
+      if (diff <= 0) {
+        clearInterval(timer);
+        box.style.display = 'none';
+        badge.className = 'status-badge is-open'; badge.setAttribute('data-i18n','programs.statusOpen');
+        btn.href = btn.dataset.form; btn.setAttribute('data-i18n','programs.applyNow');
+        btn.classList.remove('is-locked'); btn.removeAttribute('aria-disabled');
+        badge.textContent = 'Admission Open'; btn.textContent = 'Apply Now';
+        applyLanguage(document.documentElement.lang || 'en');
+        return;
+      }
+      const t = Math.floor(diff/1000);
+      document.getElementById('cdD').textContent = pad(Math.floor(t/86400));
+      document.getElementById('cdH').textContent = pad(Math.floor(t%86400/3600));
+      document.getElementById('cdM').textContent = pad(Math.floor(t%3600/60));
+      document.getElementById('cdS').textContent = pad(t%60);
+    }
+    tick(); timer = setInterval(tick, 1000);
+  })();
 </script>
 </body>
 </html>
